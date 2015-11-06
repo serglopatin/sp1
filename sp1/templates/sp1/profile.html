@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{request.get_host}} Django service provider</title>
+</head>
+<body>
+<style>
+	body {
+	line-height: 27px;
+	font-size: 18px;
+	font-family: arial;
+	}
+</style>
+
+
+Website: {{request.get_host}} <br/>
+{% if user and user.is_authenticated %}
+	Username:
+	<b>
+	{{user.username}}</b>
+	<br/>
+	<a href="/saml2/logout">logout</a>
+{% else %}
+	Please
+	<a href="/saml2/login">login</a>
+{% endif %}
+
+</body>
+</html>
