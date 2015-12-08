@@ -8,17 +8,21 @@ This is basic django website based on djangosaml2 module to test Shibboleth SSO.
 cd ~
 git clone https://github.com/serglopatin/sp1.git
 ```
+
 2. Generate certificate and key:
 ```
 cd ~/sp1/sp1/
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp1_key.key -out sp1_cert.pem
 ```
+
 3. If neccessary customize host name (sp1.localhost), key path (key='sp1_key.key', crt='sp1_cert.pem') and idp metadata path ('idp_metadata.xml') in files:
 ```
 settings.py
 saml_config.py
 ```
+
 4. Deploy SP as regular django website.
+
 5. Logs will be written to sp1/django_request.log - you need to give appropriate permissions to it.
 
 ##How it works
