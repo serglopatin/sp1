@@ -15,7 +15,7 @@ cd ~/sp1/sp1/
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp1_key.key -out sp1_cert.pem
 ```
 
-3. If neccessary customize host name (sp1.localhost), key path (key='sp1_key.key', crt='sp1_cert.pem') and idp metadata path ('idp_metadata.xml') in files:
+3. If neccessary customize host name (sp1.localhost), key paths (key='sp1_key.key', crt='sp1_cert.pem') and idp metadata path ('idp_metadata.xml') in files:
   ```
 settings.py
 saml_config.py
