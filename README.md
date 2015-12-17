@@ -15,15 +15,25 @@ cd ~/sp1/sp1/
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp1_key.key -out sp1_cert.pem
 ```
 
-3. If neccessary customize host name (sp1.localhost), key paths (key='sp1_key.key', crt='sp1_cert.pem') and idp metadata path ('idp_metadata.xml') in files:
+3. Customize necessary settings by editing file **sp1/common_settings.py** (hostname, key path, log path, sqlite db path, etc)
+
+4. Create virtualenv
   ```
-settings.py
-saml_config.py
+cd ~
+virtualenv sp1_env
+source sp1_env/bin/activate
+pip install -r ~/sp1/requirements.txt
 ```
 
-4. Deploy SP as regular django website.
+5. Migrate database:
+  ```
+cd ~/sp1
+python manage.py migrate
+```
 
-5. Logs will be written to sp1/django_request.log - you need to give appropriate permissions to it.
+6. Deploy SP as regular django website (for example, using uwsgi+nginx).
+
+7. Give write permissions to 'sp1/www_data' directory (location for sqlite db and django_request.log) for your webserver user.
 
 ##How it works
 1. Go to sp1.localhost and click 'login'
