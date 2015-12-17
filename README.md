@@ -33,7 +33,7 @@ python manage.py migrate
 
 6. Deploy SP as regular django website (for example, using uwsgi+nginx).
 
-7. Give write permissions to 'sp1/www_data' directory (location for sqlite db and django_request.log) for your webserver user.
+7. Give write permissions to **sp1/www_data** directory (used for sqlite db and django_request.log) for your webserver user.
 
 ##How it works
 1. Go to sp1.localhost and click 'login'
