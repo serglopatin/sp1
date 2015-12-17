@@ -50,7 +50,7 @@ def get_saml_config(ROOT_URL, BASEDIR):
 
 		# where the remote metadata is stored
 		'metadata': {
-			'local': [path.join(BASEDIR, 'idp_metadata.xml')],
+			'local': [path.join(BASEDIR, IDP_META_PATH)],
 		},
 
 		# set to 1 to output debugging information
