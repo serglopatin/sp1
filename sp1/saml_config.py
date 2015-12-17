@@ -3,8 +3,9 @@ from os import path
 from saml2 import saml
 import saml2
 
+from common_settings import *
 
-def get_saml_config(ROOT_URL, BASEDIR, key='sp1_key.key', crt='sp1_cert.pem'):
+def get_saml_config(ROOT_URL, BASEDIR):
 
 	return {
 		# full path to the xmlsec1 binary programm
@@ -14,14 +15,12 @@ def get_saml_config(ROOT_URL, BASEDIR, key='sp1_key.key', crt='sp1_cert.pem'):
 		'entityid': urljoin(ROOT_URL,"/saml2/metadata/"),
 
 		# directory with attribute mapping
-		'attribute_map_dir': path.join(BASEDIR, 'attribute-maps'),
+		'attribute_map_dir': path.join(BASEDIR, ATTRIB_MAP_DIR_PATH),
 
 		# this block states what services we provide
 		'service': {
 			# we are just a lonely SP
 			'sp': {
-
-
 				#fixme!
 				'allow_unsolicited':True,
 
@@ -46,14 +45,6 @@ def get_saml_config(ROOT_URL, BASEDIR, key='sp1_key.key', crt='sp1_cert.pem'):
 					],
 				},
 
-				# attributes that this project need to identify a user
-				#'required_attributes': ['uid'],
-				#'required_attributes': ['uid'],
-
-				# attributes that may be useful to have but not required
-				#'optional_attributes': ['eduPersonAffiliation'],
-
-
 			},
 		},
 
@@ -67,29 +58,9 @@ def get_saml_config(ROOT_URL, BASEDIR, key='sp1_key.key', crt='sp1_cert.pem'):
 		'timeslack':5000,
 		'accepted_time_diff':5000,
 
-
 		# certificate
-		'key_file': path.join(BASEDIR, key),  # private part
-		'cert_file': path.join(BASEDIR, crt),  # public part
+		'key_file': path.join(BASEDIR, SP_KEY_PATH),  # private part
+		'cert_file': path.join(BASEDIR, SP_CRT_PATH),  # public part
 
-		# own metadata settings
-		'contact_person': [
-			{'given_name': 'Lorenzo',
-			 'sur_name': 'Gil',
-			 'company': 'Yaco Sistemas',
-			 'email_address': 'lgs@yaco.es',
-			 'contact_type': 'technical'},
-			{'given_name': 'Angel',
-			 'sur_name': 'Fernandez',
-			 'company': 'Yaco Sistemas',
-			 'email_address': 'angel@yaco.es',
-			 'contact_type': 'administrative'},
-		],
-		# you can set multilanguage information here
-		'organization': {
-			'name': [('Yaco Sistemas', 'es'), ('Yaco Systems', 'en')],
-			'display_name': [('Yaco', 'es'), ('Yaco', 'en')],
-			'url': [('http://www.yaco.es', 'es'), ('http://www.yaco.com', 'en')],
-		},
 		'valid_for': 24,  # how long is our metadata valid
 	}

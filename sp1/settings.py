@@ -1,22 +1,22 @@
 import os
-from os import path
 from saml_config import get_saml_config
 
-BASEDIR2 = path.dirname(path.abspath(__file__))
+from common_settings import *
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LOGOUT_REDIRECT_URL = "/accounts/profile"
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["sp1.localhost"]
+ALLOWED_HOSTS = [HOSTNAME]
 
 if DEBUG:
-	ROOT_URL = "http://localhost:8000"
+	ROOT_URL = "http://" + HOSTNAME + ":8000"
 else:
-	ROOT_URL = "http://" + ALLOWED_HOSTS[0]
+	ROOT_URL = "http://" + HOSTNAME
 
-SAML_CONFIG = get_saml_config(ROOT_URL, BASEDIR2)
+SAML_CONFIG = get_saml_config(ROOT_URL, BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '123123123'
@@ -73,23 +73,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sp1.wsgi.application'
 
 
-if DEBUG:
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.sqlite3',
-			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-		}
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, SQLITE_DB_PATH),
 	}
-else:
-	DATABASES = {
-        'default': {
-			'ENGINE': 'django.db.backends.postgresql_psycopg2',
-			'NAME': 'sp1',
-			'USER': 'sp1',
-			'PASSWORD': '123',
-
-        }
-	}
+}
 
 
 LOGGING = {
@@ -105,7 +94,7 @@ LOGGING = {
                 'django_request': {
                         'level': 'DEBUG',
                         'class': 'logging.handlers.RotatingFileHandler',
-                        'filename': 'django_request.log',
+                        'filename': LOG_PATH,
                         'maxBytes': 1024*1024*5,
                         'backupCount': 5,
                         'formatter':'standard',

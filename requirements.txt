@@ -1,3 +1,2 @@
 django
 djangosaml2
-psycopg2
