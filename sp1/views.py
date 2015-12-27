@@ -14,17 +14,3 @@ def view_profile(request):
 				  {"user":request.user}
 							  )
 
-def my_saml_logout(request, config_loader_path=None):
-
-	try:
-		if request.user.is_authenticated():
-
-			return djangosaml2_logout(request, config_loader_path)
-		else:
-			return redirect('home')
-
-	except:
-		logger.debug('ERROR djangosaml2_logout')
-		django_logout(request)
-		return redirect('home')
-
