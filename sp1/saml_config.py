@@ -40,7 +40,7 @@ def get_saml_config(ROOT_URL, BASEDIR):
 					'single_logout_service': [
 						(urljoin(ROOT_URL,"/saml2/ls/"),
 						 saml2.BINDING_HTTP_REDIRECT),
-						(urljoin(ROOT_URL, '/ls/post'),
+						(urljoin(ROOT_URL, '/saml2/ls/post/'),
 						 saml2.BINDING_HTTP_POST),
 					],
 				},
