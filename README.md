@@ -1,6 +1,6 @@
 # sp1 - sample django service provider
 
-This is basic django website based on djangosaml2 module to test Shibboleth SSO. It contains only single page with login button.
+This is basic django website based on djangosaml2 module to test Shibboleth SSO. It contains only single page with login button.  
 
 ##Installation
 1. Clone sp1:
